@@ -1,4 +1,6 @@
-package com.example.android2
+package com.example.android2.model
+
+import com.example.android2.model.City
 
 data class Weather(
     val city: City = getDefaultCity(),

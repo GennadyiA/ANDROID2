@@ -1,4 +1,4 @@
-package com.example.android2
+package com.example.android2.model
 
 interface Repository {
     fun getWeatherFromServer(): Weather

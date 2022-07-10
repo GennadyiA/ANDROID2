@@ -1,8 +1,8 @@
-package com.example.android2
+package com.example.android2.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.android2.ui.main.MainFragment
+import com.example.android2.R
 
 class MainActivity : AppCompatActivity() {
 

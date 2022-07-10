@@ -1,4 +1,4 @@
-package com.example.android2.ui.main
+package com.example.android2.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.example.android2.AppState
+import com.example.android2.viewmodel.AppState
 import com.example.android2.R
-import com.example.android2.Weather
 import com.google.android.material.snackbar.Snackbar
 import com.example.android2.databinding.FragmentMainBinding
+import com.example.android2.model.Weather
+import com.example.android2.viewmodel.MainViewModel
 
 
 class MainFragment : Fragment() {

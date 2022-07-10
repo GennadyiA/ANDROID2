@@ -1,4 +1,4 @@
-package com.example.android2
+package com.example.android2.model
 
 data class City(
     val city: String,

@@ -1,4 +1,4 @@
-package com.example.android2
+package com.example.android2.model
 
 class RepositoryImpl : Repository {
     override fun getWeatherFromServer(): Weather {

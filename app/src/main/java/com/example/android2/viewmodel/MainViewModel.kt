@@ -1,12 +1,11 @@
-package com.example.android2.ui.main
+package com.example.android2.viewmodel
 
 import android.os.SystemClock.sleep
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android2.AppState
-import com.example.android2.Repository
-import com.example.android2.RepositoryImpl
+import com.example.android2.viewmodel.AppState
+import com.example.android2.model.Repository
+import com.example.android2.model.RepositoryImpl
 
 
 class MainViewModel(
