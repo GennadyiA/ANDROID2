@@ -6,13 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android2.R
+import com.example.android2.databinding.FragmentMainBinding
 import com.example.android2.model.Weather
 import com.example.android2.databinding.FragmentMainRecyclerItemBinding
 
 class MainFragmentAdapter(private var onItemViewClickListener:
                           MainFragment.OnItemViewClickListener?) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
+    private var _binding: FragmentMainRecyclerItemBinding? = null
+    private val binding get() = _binding!!
     private var weatherData: List<Weather> = listOf()
+
     fun setWeather(data: List<Weather>) {
         weatherData = data
         notifyDataSetChanged()
@@ -42,21 +46,9 @@ class MainFragmentAdapter(private var onItemViewClickListener:
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(weather: Weather) {
-//            val binding = FragmentMainRecyclerItemBinding.bind(itemView)
-//            binding.mainFragmentRecyclerItemTextView.text = weather.city.city
-//            binding.root.setOnClickListener {
-//                onItemViewClickListener?.onItemViewClick(weather)
-//            }
-            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
-                weather.city.city
-            itemView.setOnClickListener {
-                onItemViewClickListener?.onItemViewClick(weather)
-//            val binding= FragmentMainRecyclerItemBinding.bind(itemView)
-//            binding.cityName.text = weather.city.city
-//            binding.root.setOnClickListener {
-//                callback.onItemClick(weather)
-
-//            }
+            itemView.apply {
+                findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text = weather.city.city
+                setOnClickListener { onItemViewClickListener?.onItemViewClick(weather) }
             }
         }
     }

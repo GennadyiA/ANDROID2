@@ -31,9 +31,10 @@ class DetailsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val weather = arguments?.getParcelable<Weather>(BUNDLE_EXTRA)
-        if (weather != null) {
-            renderData(weather)
+        arguments?.getParcelable<Weather>(BUNDLE_EXTRA)?.let { weather ->
+            weather.city.also {
+                renderData(weather)
+            }
         }
     }
     private fun renderData(weather: Weather) {
