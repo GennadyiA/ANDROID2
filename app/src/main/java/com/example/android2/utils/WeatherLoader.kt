@@ -2,10 +2,9 @@ package com.example.android2.utils
 
 import android.os.Build
 import android.os.Handler
-import android.provider.ContactsContract.CommonDataKinds.Website.URL
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.viewbinding.BuildConfig
+import com.example.android2.BuildConfig
 import com.example.android2.model.dto.WeatherDTO
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -16,7 +15,6 @@ import java.net.URL
 import java.util.stream.Collectors
 import javax.net.ssl.HttpsURLConnection
 
-private const val YOUR_API_KEY = "cf6dc3dc-b361-43da-b966-de7596dc2391"
 
 @RequiresApi(Build.VERSION_CODES.N)
 class WeatherLoader(private val listener: WeatherLoaderListener, private val
@@ -24,8 +22,7 @@ lat: Double, private val lon: Double) {
     @RequiresApi(Build.VERSION_CODES.N)
     fun loadWeather() {
         try {
-            val uri =
-                URL("https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}")
+            val uri = URL("https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}")
             val handler = Handler()
             Thread(Runnable {
                 lateinit var urlConnection: HttpsURLConnection
@@ -34,14 +31,11 @@ lat: Double, private val lon: Double) {
                     urlConnection.requestMethod = "GET"
                     urlConnection.addRequestProperty(
                         "X-Yandex-API-Key",
-                        YOUR_API_KEY
+                        BuildConfig.WEATHER_API_KEY
                     )
                     urlConnection.readTimeout = 10000
-                    val bufferedReader =
-                        BufferedReader(InputStreamReader(urlConnection.inputStream))
-                    val weatherDTO: WeatherDTO =
-                        Gson().fromJson(getLines(bufferedReader),
-                            WeatherDTO::class.java)
+                    val bufferedReader = BufferedReader(InputStreamReader(urlConnection.inputStream))
+                    val weatherDTO: WeatherDTO = Gson().fromJson(getLines(bufferedReader), WeatherDTO::class.java)
                     handler.post { listener.onLoaded(weatherDTO) }
                 } catch (e: Exception) {
                     Log.e("", "Fail connection", e)

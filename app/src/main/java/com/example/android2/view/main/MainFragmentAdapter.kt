@@ -10,9 +10,7 @@ import com.example.android2.databinding.FragmentMainBinding
 import com.example.android2.model.Weather
 import com.example.android2.databinding.FragmentMainRecyclerItemBinding
 
-class MainFragmentAdapter(private var onItemViewClickListener:
-                          MainFragment.OnItemViewClickListener?) :
-    RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
+class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnItemViewClickListener?) : RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
     private var _binding: FragmentMainRecyclerItemBinding? = null
     private val binding get() = _binding!!
     private var weatherData: List<Weather> = listOf()
@@ -22,14 +20,9 @@ class MainFragmentAdapter(private var onItemViewClickListener:
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): MainViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_main_recycler_item, parent, false) as
-                    View
+            LayoutInflater.from(parent.context).inflate(R.layout.fragment_main_recycler_item, parent, false) as View
         )
     }
 

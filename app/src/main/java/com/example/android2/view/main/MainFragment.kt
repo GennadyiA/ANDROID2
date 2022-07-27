@@ -36,10 +36,7 @@ class MainFragment : Fragment() {
         }
     })
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.getRoot()
     }
@@ -75,10 +72,7 @@ class MainFragment : Fragment() {
             }
             is AppState.Error -> {
                 mainFragmentLoadingLayout.visibility = View.GONE
-                mainFragmentRootView.showSnackBar(
-                    getString(R.string.error),
-                    getString(R.string.reload),
-                    { viewModel.getWeatherFromLocalSourceRus() })
+                mainFragmentRootView.showSnackBar(getString(R.string.error), getString(R.string.reload), { viewModel.getWeatherFromLocalSourceRus() })
             }
         }
     }
@@ -86,8 +80,7 @@ class MainFragment : Fragment() {
         text: String,
         actionText: String,
         action: (View) -> Unit,
-        length: Int = Snackbar.LENGTH_INDEFINITE
-    ) {
+        length: Int = Snackbar.LENGTH_INDEFINITE) {
         Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 
