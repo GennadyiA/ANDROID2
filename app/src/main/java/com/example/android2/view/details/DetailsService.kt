@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.android2.BuildConfig
-import com.example.android2.model.dto.WeatherDTO
+import com.example.android2.model.WeatherDTO
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -40,7 +40,7 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun loadWeather(lat: String, lon: String) {
         try {
-            val uri = URL("https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}")
+            val uri = URL("https://api.weather.yandex.ru/v2/informers?lat=${lat}&lon=${lon}")
             lateinit var urlConnection: HttpsURLConnection
             try {
                 urlConnection = uri.openConnection() as HttpsURLConnection

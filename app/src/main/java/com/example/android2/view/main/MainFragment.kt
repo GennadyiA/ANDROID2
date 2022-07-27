@@ -26,10 +26,8 @@ class MainFragment : Fragment() {
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
             activity?.supportFragmentManager?.apply {
-                beginTransaction()
-                    .add(R.id.container, DetailsFragment.newInstance(Bundle().apply {
-                        putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
-                    }))
+                beginTransaction().add(R.id.container, DetailsFragment.newInstance(Bundle().apply {
+                        putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)}))
                     .addToBackStack("")
                     .commitAllowingStateLoss()
             }
@@ -83,7 +81,6 @@ class MainFragment : Fragment() {
         length: Int = Snackbar.LENGTH_INDEFINITE) {
         Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
-
     interface OnItemViewClickListener {
         fun onItemViewClick(weather: Weather)
     }

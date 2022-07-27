@@ -1,11 +1,11 @@
 package com.example.android2.utils
-
+/*
 import android.os.Build
 import android.os.Handler
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.android2.BuildConfig
-import com.example.android2.model.dto.WeatherDTO
+import com.example.android2.model.WeatherDTO
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -22,7 +22,7 @@ lat: Double, private val lon: Double) {
     @RequiresApi(Build.VERSION_CODES.N)
     fun loadWeather() {
         try {
-            val uri = URL("https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}")
+            val uri = URL("https://api.weather.yandex.ru/v2/informers?lat=${lat}&lon=${lon}")
             val handler = Handler()
             Thread(Runnable {
                 lateinit var urlConnection: HttpsURLConnection
@@ -60,3 +60,4 @@ lat: Double, private val lon: Double) {
         fun onFailed(throwable: Throwable)
     }
 }
+*/

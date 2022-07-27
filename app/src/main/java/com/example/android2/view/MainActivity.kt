@@ -12,7 +12,7 @@ import com.example.android2.databinding.ActivityMainBinding
 import com.example.android2.view.experiments.ThreadsFragment
 
 class MainActivity : AppCompatActivity() {
-    private val receiver = MainBroadcastReceiver()
+    private val receiver = MyBroadcastReceiver()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

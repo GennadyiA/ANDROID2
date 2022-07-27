@@ -2,6 +2,7 @@ package com.example.android2.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+
 @Parcelize
 data class City(
     val city: String,
