@@ -1,5 +1,6 @@
 package com.example.android2.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.android2.viewmodel.AppState
 import com.example.android2.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
+private const val IS_WORLD_KEY = "LIST_OF_TOWNS_KEY"
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
@@ -23,6 +25,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java) }
 
+    private var isDataSetWorld: Boolean = false
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
             activity?.supportFragmentManager?.apply {
@@ -49,15 +52,19 @@ class MainFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer {
             renderData(it) })
         viewModel.getWeatherFromLocalSourceRus()
+        showListOfTowns()
     }
-    private fun changeWeatherDataSet() =
-        if (isDataSetRus) {
-            viewModel.getWeatherFromLocalSourceWorld()
-            mainFragmentFAB.setImageResource(R.drawable.ic_earth)
-        } else {
+    private fun changeWeatherDataSet() {
+        if (isDataSetWorld) {
             viewModel.getWeatherFromLocalSourceRus()
-            mainFragmentFAB.setImageResource(R.drawable.ic_russia)
-        }.also { isDataSetRus = !isDataSetRus }
+            binding.mainFragmentFAB.setImageResource(R.drawable.ic_russia)
+        } else {
+            viewModel.getWeatherFromLocalSourceWorld()
+            binding.mainFragmentFAB.setImageResource(R.drawable.ic_earth)
+        }
+        isDataSetWorld = !isDataSetWorld
+        saveListOfTowns(isDataSetWorld)
+    }
 
     private fun renderData(appState: AppState) {
         when (appState) {
@@ -80,6 +87,24 @@ class MainFragment : Fragment() {
         action: (View) -> Unit,
         length: Int = Snackbar.LENGTH_INDEFINITE) {
         Snackbar.make(this, text, length).setAction(actionText, action).show()
+    }
+    private fun showListOfTowns() {
+        activity?.let {
+            if (it.getPreferences(Context.MODE_PRIVATE).getBoolean(IS_WORLD_KEY,
+                    false)) {
+                changeWeatherDataSet()
+            } else {
+                viewModel.getWeatherFromLocalSourceRus()
+            }
+        }
+    }
+    private fun saveListOfTowns(isDataSetWorld: Boolean) {
+        activity?.let {
+            with(it.getPreferences(Context.MODE_PRIVATE).edit()) {
+                putBoolean(IS_WORLD_KEY, isDataSetWorld)
+                apply()
+            }
+        }
     }
     interface OnItemViewClickListener {
         fun onItemViewClick(weather: Weather)

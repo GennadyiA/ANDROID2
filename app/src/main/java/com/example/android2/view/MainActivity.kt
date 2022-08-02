@@ -9,7 +9,7 @@ import android.view.MenuItem
 import com.example.android2.R
 import com.example.android2.view.main.MainFragment
 import com.example.android2.databinding.ActivityMainBinding
-import com.example.android2.view.experiments.ThreadsFragment
+import com.example.android2.app.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
     private val receiver = MyBroadcastReceiver()
@@ -28,11 +28,25 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_screen_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.menu_threads -> {
+//                supportFragmentManager.apply {
+//                    beginTransaction().add(R.id.container, ThreadsFragment.newInstance()).addToBackStack("").commitAllowingStateLoss()
+//                }
+//                true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_threads -> {
+            R.id.menu_history -> {
                 supportFragmentManager.apply {
-                    beginTransaction().add(R.id.container, ThreadsFragment.newInstance()).addToBackStack("").commitAllowingStateLoss()
+                    beginTransaction()
+                        .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
                 }
                 true
             }

@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.android2.BuildConfig
 import com.example.android2.R
 import com.example.android2.databinding.FragmentDetailsBinding
+import com.example.android2.model.City
 import com.example.android2.model.Weather
 import com.example.android2.model.FactDTO
 import com.example.android2.model.WeatherDTO
@@ -91,6 +92,7 @@ class DetailsFragment : Fragment() {
     }
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         binding.cityName.text = city.city
         binding.cityCoordinates.text = String.format(getString(R.string.city_coordinates),city.lat.toString(),city.lon.toString())
         binding.temperatureValue.text = weather.temperature.toString()
@@ -108,6 +110,19 @@ class DetailsFragment : Fragment() {
 
 
         }
+    }
+    private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
     }
     override fun onDestroyView() {
         super.onDestroyView()

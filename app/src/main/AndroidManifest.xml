@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,6 +25,7 @@
         </activity>
         <service android:name=".view.experiments.MainService" />
         <service android:name=".view.details.DetailsService" />
+
         <receiver android:name=".view.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
