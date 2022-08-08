@@ -1,4 +1,4 @@
-package com.example.android2.app
+package com.example.android2.view.history
 
 import android.view.LayoutInflater
 import android.view.View

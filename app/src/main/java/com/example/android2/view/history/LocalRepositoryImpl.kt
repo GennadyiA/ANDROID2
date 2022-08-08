@@ -1,4 +1,4 @@
-package com.example.android2.app
+package com.example.android2.view.history
 
 import com.example.android2.room.HistoryDao
 import com.example.android2.model.Weather

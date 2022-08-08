@@ -9,8 +9,8 @@ import com.example.android2.repository.DetailsRepositoryImpl
 import com.example.android2.repository.RemoteDataSource
 import com.example.android2.utils.convertDtoToModel
 import com.example.android2.App.Companion.getHistoryDao
-import com.example.android2.app.LocalRepository
-import com.example.android2.app.LocalRepositoryImpl
+import com.example.android2.view.history.LocalRepository
+import com.example.android2.view.history.LocalRepositoryImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
