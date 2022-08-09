@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.android2.R
 import com.example.android2.databinding.FragmentContentProviderBinding
+import java.security.AccessController
+import com.example.android2.databinding.FragmentMainBinding
 
 const val REQUEST_CODE = 42
 
@@ -33,6 +35,7 @@ class ContentProviderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkPermission()
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
