@@ -303,7 +303,7 @@ class MainFragment : Fragment() {
                     1
                 )
                 mainFragmentFAB.post {
-                    showAddressDialog(addresses[0].getAddressLine(0), location)
+                    addresses?.get(0)?.let { showAddressDialog(it.getAddressLine(0), location) }
                 }
             } catch (e: IOException) {
                 e.printStackTrace()

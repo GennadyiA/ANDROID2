@@ -93,8 +93,12 @@ class GoogleMapsFragment : Fragment() {
             Thread {
                 try {
                     val addresses = geoCoder.getFromLocationName(searchText, 1)
-                    if (addresses.size > 0) {
-                        goToAddress(addresses, it, searchText)
+                    if (addresses != null) {
+                        if (addresses.size > 0) {
+                            if (addresses != null) {
+                                goToAddress(addresses, it, searchText)
+                            }
+                        }
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -130,7 +134,8 @@ class GoogleMapsFragment : Fragment() {
                         geoCoder.getFromLocation(location.latitude,
                             location.longitude, 1)
                     textAddress.post { textAddress.text =
-                        addresses[0].getAddressLine(0) }
+                        addresses?.get(0)?.getAddressLine(0) ?: ""
+                    }
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
